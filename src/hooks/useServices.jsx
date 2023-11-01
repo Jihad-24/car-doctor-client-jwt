@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 const useServices = () => {
     const [services, setSercices] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://car-doctor-server-jwt-jihad.vercel.app/services')
             .then(res => res.json())
             .then(data => {
                 setSercices(data);
-        })
+            })
     }, [])
     return services;
 };

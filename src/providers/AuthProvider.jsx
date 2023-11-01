@@ -28,27 +28,27 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             const userEmail = currentUser?.email || user?.email
-            const loggedUser ={email: userEmail}
+            const loggedUser = { email: userEmail }
 
             setUser(currentUser);
             console.log('current user', currentUser);
             setLoading(false);
             // if user exists then issue a token
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', loggedUser, {
+                axios.post('https://car-doctor-server-jwt-jihad.vercel.app/jwt', loggedUser, {
                     withCredentials: true
                 })
                     .then(res => {
-                    console.log('token response ',res.data);
-                })
+                        console.log('token response ', res.data);
+                    })
             }
             else {
-                axios.post('http://localhost:5000/logout', loggedUser, {
-                    withCredentials:true
+                axios.post('https://car-doctor-server-jwt-jihad.vercel.app/logout', loggedUser, {
+                    withCredentials: true
                 })
                     .then(res => {
-                    console.log(res.data);
-                })
+                        console.log(res.data);
+                    })
             }
         });
         return () => {
@@ -59,8 +59,8 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         loading,
-        createUser, 
-        signIn, 
+        createUser,
+        signIn,
         logOut
     }
 
